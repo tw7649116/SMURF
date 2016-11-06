@@ -48,11 +48,7 @@ for uu = 1:n_bact
     Groups(end).index = uu;
     Groups(end).freq = found_bacteria.frequency(uu);
     Groups(end).bact_ind = bact_ind;
-    
-    % Answer
-    answer_str = find_answer_in_group(full_names,fractions,use_levels);
-    Groups(end).answer_cell = [num2str(found_bacteria.frequency(uu)),num2str(found_bacteria.assigned_reads(uu)), {answer_str}];
-    
+        
 end
 
 % Sort the  based on genus frequency

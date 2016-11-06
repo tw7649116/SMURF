@@ -44,22 +44,8 @@ dat0_filename = [resDir '/sample_' sample_name '_dat0.mat'];
 save(dat0_filename, 'dat0')
 
 % Solve the mixture
-[bact_freq_vec, bactMetaGroups_vec, keep_col] = solve_iterative_noisy(dat0, AlgoConfig,readsStatsObj);
-
-
-
-% *************************** PREPARE THE RESULTS ********************
-% Keep only significant frequencies
-[sorted_freq,If] = sort(bact_freq_vec,'descend');
-cut_ind = find(cumsum(sorted_freq)>AlgoConfig.cut_freq_th,1);
-if isempty(cut_ind)
-    cut_ind = length(sorted_freq);
-end
-passed_freq_thresh = sort(If(1:cut_ind));
-
-% Write the results
-bactMetaGroups = bactMetaGroups_vec(passed_freq_thresh);
-found_bacteria.frequency = bact_freq_vec(passed_freq_thresh)';
+[bact_freq_vec, bactMetaGroups, keep_col] = solve_iterative_noisy(dat0, AlgoConfig,readsStatsObj);
+found_bacteria.frequency = bact_freq_vec';
 
 
 % Calculate the number of reads assigned to each bacteria
@@ -74,11 +60,10 @@ for rr = 1:nR
     end
 end
 found_bacteria.assigned_reads = sum(read_count,2)';
-%---------------------------------------------------------------------------------
-
 
 % Save results
 matlab_filename = [resDir '/sample_' sample_name '_results.mat'];
 save(matlab_filename, 'AlgoConfig','bactMetaGroups','found_bacteria')
+%---------------------------------------------------------------------------------
 
 

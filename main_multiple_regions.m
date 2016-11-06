@@ -1,5 +1,4 @@
-function main_multiple_regions(PrepConfig,AlgoConfig,SampleConfig,Header_uni,Sequence_uni)
-% function main_multiple_regions(PrepConfig,AlgoConfig,SampleConfig, Header_uni, Sequence_uni)
+function main_multiple_regions(PrepConfig,AlgoConfig,SampleConfig)
 
 % Configs processing
 sample_name = SampleConfig.sample_name;
@@ -32,7 +31,7 @@ reconstruction_func(readsPath, sample_name, AlgoConfig, readsStatsObj);
 
 
 % Save the reconstruction
-save_reconstruction(readsPath, sample_name, AlgoConfig.rdpPath,Header_uni,Sequence_uni)
+save_reconstruction(readsPath, sample_name, AlgoConfig.rdpPath)
 
 
 % Save the read count statistics

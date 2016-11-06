@@ -3,7 +3,7 @@
 
 % Set the 16S reference DB
 uniS16_dir = './Green_Genes_201305/unique_up_to_3_ambiguous_16S';
-db_filename = 'GreenGenes_201305_unique_up_to_3_ambiguous_16S.mat';
+db_filename = 'GreenGenes_201305_unique_up_to_3_ambiguous_16S';
 
 
 % The primers seqs
@@ -40,21 +40,17 @@ end
 
 % Generate kmers DB path and filename
 suffix = ['_' primer_set_name '_2mm_RL' num2str(DB_kmer_len)];
-dbPath = [uniS16_dir suffix];
-
-dot_ind = find(db_filename == '.',1,'last');
-dbFileName = [db_filename(1:dot_ind-1) suffix];
 
 
 % ********************** SAMPLE PREP PARAMETERS ********************
 % Quality filter
-PrepConfig.data_type= 'fastq';
+PrepConfig.data_type = 'fastq';
 PrepConfig.qual_th = 30;
-PrepConfig.prc_high_qual = 0.75; % default is 0.75. Lowered for Shiri MiSeq to 0.5
+PrepConfig.prc_high_qual = 0.75; 
 PrepConfig.low10_th = 3;
 PrepConfig.read_len = kmer_len;
 PrepConfig.pe_flag = 1;
-PrepConfig.max_num_Ns = 0; % default is 0 , lowered for Shiri MiSeq to 5
+PrepConfig.max_num_Ns = 0; 
 
 % Algo related
 PrepConfig.algo_pe_flag = 1;
@@ -66,8 +62,8 @@ PrepConfig.with_primer_flag = 0;
 AlgoConfig.verbose = 1;
 
 % DB path
-AlgoConfig.dbPath = dbPath;
-AlgoConfig.dbFileName = dbFileName;
+AlgoConfig.dbPath = [uniS16_dir suffix];
+AlgoConfig.dbFileName = [db_filename suffix];
 AlgoConfig.rdpPath = [uniS16_dir '/RDP_descriptions'];
 
 % Reads filter params
@@ -82,7 +78,6 @@ AlgoConfig.nMM_cut = 2;
 
 % Reconstruction params
 AlgoConfig.do_filter = 1;
-AlgoConfig.solve_L2 = 0;
 AlgoConfig.regions_normalization_scheme = 'is amplified'; % 'none' / 'perfect match' / 'any match' / 'is amplified'
 
 AlgoConfig.read_type = char('PE'*PrepConfig.algo_pe_flag + 'SE'*(1-PrepConfig.algo_pe_flag));
@@ -92,6 +87,5 @@ AlgoConfig.barcoded_regions = 1;
 
 AlgoConfig.tol = 5e-7;
 AlgoConfig.numIter = 10000;
-AlgoConfig.cut_freq_th = 1;
 
 
