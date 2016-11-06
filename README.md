@@ -5,7 +5,9 @@ SMURF software package ![GitHub Logo](smurf-logo.jpg)
 Installation 
 ------------
 Download the SMURF package from https://github.com/NoamShental/SMURF and decompress all the data base files and folders as follows:
+
 “tar xf ./Green_Genes_201305/unique_up_to_3_ambiguous_16S/RDP_description.tar”
+
 “gunzip ./Green_Genes_201305/unique_up_to_3_ambiguous_16S/Green_Genes_201305_unique_up_to_3_ambiguous_16S.fasta.gz”
 
 Inputs
@@ -17,6 +19,7 @@ Inputs
 Output
 ------
 The result of the profiling is csv file with reconstructed groups information including:
+
 **Group frequency** – the frequency assigned to the group
 
 **Read count** – number of reads assigned to the group
