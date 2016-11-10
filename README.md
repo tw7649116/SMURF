@@ -27,16 +27,23 @@ Results include:
 
 **Number of sequences** – number of sequences that belong to each group (i.e., the ambiguity)
 
-**Taxonomy** – Classification using the RDP sequence match algorythm.
+**Taxonomy** – Classification using the RDP sequence match algorithm.
  
-Example
+Usage
 -------
-To profile a single sample use a script named "profile_one_sample.m" 
+1. Generate the ad-hoc database of k-mers by running the DB_prepare.m script. The parameters that define the DB are specified in db_params_script.m file
+2. To profile a single sample use a script named "profile_one_sample.m". Parametrs of the sample are specified in the script. The sample prep and the algorithm parameters are specified in the params_script.m file
 
-Parameters' description
+Data base parameters
 ----------------------
+**primers_seq** - the list of (possibly degenerate) primers
 
-**Sample parameters**
+**DB_kmer_len** - the length of the kmers saved in the ad hoc data base. Notice that the **kmer_len** parameter used for the sample profiling will have to be smaller than **DB_kmer_len**
+
+**allowed_mm** - the maximal allowed mismatch betweem a primer and 16S sequence for the latter to be considered amplified by the primer 
+
+Sample parameters
+----------------------
 
 **base_samples_dir**  - is the directory where all samples are located
 
@@ -84,10 +91,6 @@ Algorithm parameters
 **do_filter** - 0/1 flag specifying whether to apply the data preprocessing bacteria filter.
 
 **pe** – probability of error per nucleotide assumed by the algorithm.
-
-**regions_normalization_scheme** - 'is amplified' (default)/ 'none' / 'perfect match' / 'any match' 
-
-**mixture_type** - 'Multiplex' (default)/'RegionByRegion'.
 
 **tol** – maximal L1 change in the estimate of read proportions vector between algorithm iterations.
 

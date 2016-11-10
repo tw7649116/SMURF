@@ -55,19 +55,7 @@ end
 
 
 % Set the regions normalization factors
-if strcmp(Config.regions_normalization_scheme,'none')
-    %     regions_norm_factor = nR*ones(1,nB_all);
-    comb_mat = ones(nR,nB_all);
-elseif strcmp(Config.regions_normalization_scheme,'is amplified')
-    %     regions_norm_factor = sum(dat0.indInSeqs>0,2)';
-    comb_mat = dat0.indInSeqs'>0;
-elseif strcmp(Config.regions_normalization_scheme,'perfect match')
-    %     regions_norm_factor = sum(num_perfect_matches,1)/SE_PE_flag;
-    comb_mat = num_perfect_matches/SE_PE_flag;
-elseif strcmp(Config.regions_normalization_scheme,'any match')
-    %     regions_norm_factor = sum(sumAPerBactPerRegion>0,1);
-    comb_mat = sumAPerBactPerRegion>0;
-end
+comb_mat = dat0.indInSeqs'>0;
 regions_norm_factor = sum(comb_mat,1);
 
 
@@ -88,21 +76,14 @@ keep_col = find(sum(missing_0MM_region,1)==0 & sum(sumAPerBactPerRegion,1) > 0 &
 nB = length(keep_col);
 
 
-% Normalize frequency counts
+% Normalize the read counts
 if Config.verbose
     disp('Normalize frequency counts')
 end
 numReadsPerRegion = cellfun(@sum,F_vec);
-freq_vec = {};
+freq_vec = cell(1,nR);
 for i = 1:nR
-    
-    % Normalize the read counts
-    if strcmp(Config.mixture_type,'Multiplex')
-        freq_vec{i} = F_vec{i}/sum(numReadsPerRegion);
-    elseif strcmp(Config.mixture_type,'RegionByRegion')
-        freq_vec{i} = F_vec{i}/numReadsPerRegion(i)/nR;
-    end
-    
+    freq_vec{i} = F_vec{i}/sum(numReadsPerRegion);
 end
 
 

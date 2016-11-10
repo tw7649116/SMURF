@@ -44,12 +44,11 @@ dat0_filename = [resDir '/sample_' sample_name '_dat0.mat'];
 save(dat0_filename, 'dat0')
 
 % Solve the mixture
-[bact_freq_vec, bactMetaGroups, keep_col] = solve_iterative_noisy(dat0, AlgoConfig,readsStatsObj);
+[bact_freq_vec, bactMetaGroups, indices] = solve_iterative_noisy(dat0, AlgoConfig,readsStatsObj);
 found_bacteria.frequency = bact_freq_vec';
 
 
 % Calculate the number of reads assigned to each bacteria
-indices = keep_col(passed_freq_thresh);
 read_count = zeros(length(indices),nR);
 for rr = 1:nR
     if ~isempty(dat0.A{rr})

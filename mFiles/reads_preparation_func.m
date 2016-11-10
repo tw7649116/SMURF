@@ -2,10 +2,8 @@ function reads_preparation_func(fname, sample_num, primers_seq, PrepConfig, read
 
 % Extract params
 algo_pe_flag = PrepConfig.algo_pe_flag;
-align_k = PrepConfig.align_k;
 max_err_inprimer = PrepConfig.max_err_inprimer;
 with_primer_flag = PrepConfig.with_primer_flag;
-db_file = PrepConfig.bowtie_index;
 
 % Degenerate primers
 for rr = 1:size(primers_seq,1)

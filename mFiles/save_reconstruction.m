@@ -25,6 +25,6 @@ saveCellFile(output_cell, reconst_filename)
 
 % **************** Build the MAT file ************
 groups_filename = [readsPath '/resDir/sample_' sample_num '_reconstruction.mat'];
-save(groups_filename,'Groups','compact_cell','output_cell','levels_list')
+save(groups_filename,'Groups','output_cell','levels_list')
 % ----------------------------------------------------------------------------------
 
