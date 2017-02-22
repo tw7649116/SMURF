@@ -12,42 +12,58 @@ Download the SMURF package and decompress all the database files and folders as 
 
 Inputs
 ------
-**Sequences read** – fastq files with the sequenced reads. An example sample sequenced with paired end Illumina MiSeq is provided.  
+**Sequenced reads** – fastq files of the sequenced reads. An example sample that was sequenced on paired-end Illumina MiSeq is provided.  
 
-**Ad hoc database** – a database per region k-mers (an example of the DB for the six primer pair described in the manuscript is provided with the software package)
+**Ad hoc database** – a database of k-mers per region (an example of the DB for the six primer pairs described in the manuscript is provided with the software package)
 
 Output
 ------
-The result of the profiling is csv file with reconstructed groups' information. A group is a set of full-length 16S rRNA sequences that share their sequence over the amplified regions.
+The profiling results is a csv file with reconstructed groups' information. A group is a set of full-length 16S rRNA sequences that share their sequence over the amplified regions.
 Results include:
 
 **Group frequency** – the frequency assigned to each group
 
-**Read count** – number of reads assigned to each group
+**Read count** – the number of reads assigned to each group
 
-**Number of sequences** – number of sequences that belong to each group (i.e., the ambiguity)
+**Number of sequences** – the number of sequences that belong to each group (i.e., the ambiguity)
 
 **Taxonomy** – Classification using the RDP sequence match algorithm.
  
 Usage
 -------
 1. Generate the ad-hoc database of k-mers by running the DB_prepare.m script. The parameters that define the DB are specified in db_params_script.m file
-2. To profile a single sample use a script named "profile_one_sample.m". Parametrs of the sample are specified in the script. The sample prep and the algorithm parameters are specified in the params_script.m file
+2. To profile a single sample use a script named "profile_one_sample.m". Parameters of the sample are specified in the script. The sample preparation and the algorithm parameters are specified in the script called params_script.m 
+3. Alternatively you can run the main_smurf.m function with one config file "compiled_config_script.m" as described for the standalone versions.
 
-Data base parameters
+Standalone versions
+--------------------
+To allow using SMURF when Matlab is not available, we prepared a Windows and a Linux precompiled versions of SMURF. 
+The user should first download and install one of the following file:
+
+**Windows** - download and install MCR from: https://www.mathworks.com/supportfiles/downloads/R2015a/deployment_files/R2015a/installers/win64/MCR_R2015a_win64_installer.exe
+**Linux** - download and install MCR from: https://www.mathworks.com/supportfiles/downloads/R2014a/deployment_files/R2014a/installers/glnxa64/MCR_R2014a_glnxa64_installer.zip
+
+The SMURF standalone version has a single input argument: the name of the configuration file, to be provided in the command line. 
+In Windows the user will be prompted to select the config file in case it was not provided in the command line. 
+An example of a configuration file (compiled_config_script.m) is provided with the package.
+The software will write all its log file in the same directory.
+
+
+
+Database parameters
 ----------------------
 **primers_seq** - the list of (possibly degenerate) primers
 
 **DB_kmer_len** - the length of the kmers saved in the ad hoc data base. Notice that the **kmer_len** parameter used for the sample profiling will have to be smaller than **DB_kmer_len**
 
-**allowed_mm** - the maximal allowed mismatch betweem a primer and 16S sequence for the latter to be considered amplified by the primer 
+**allowed_mm** - the maximal allowed mismatch between a primer and 16S sequence for the latter to be considered amplified by the primer 
 
 Sample parameters
 ----------------------
 
-**base_samples_dir**  - is the directory where all samples are located
+**base_samples_dir**  - the samples’ directory 
 
-**sample_name** – is the name of the directory where fastq files for specific samples are located. Notice that the fastq files must be named using the following convention. If the sample_name=’Example’, then for paired end sequencing the files will be names: Example_L001_R1_001.fastq and Example_L001_R2_001.fastq
+**sample_name** – the directory of fastq files of the specific samples. Notice that the fastq files must be named using the following convention. If the sample_name=’Example’, then for paired end sequencing the files will be names: Example_L001_R1_001.fastq and Example_L001_R2_001.fastq
 
 **primer_set_name** – the name of the primers set used for sequencing the sample
 
@@ -84,7 +100,7 @@ Algorithm parameters
 
 **min_read_freq** - minimal required frequency for a read per region to pass the low frequency reads filter.
 
-**min_read_count** - minimal required count for a read per region to pass the low frequncy reads filter.
+**min_read_count** - minimal required count for a read per region to pass the low frequency reads filter.
 
 **nMM_cut** – maximal number of mismatches allowed when matching reads to k-mers. 
 
