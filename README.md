@@ -50,6 +50,11 @@ In Windows the user will be prompted to select the config file in case it was no
 An example of a configuration file (compiled_config_script.m) is provided with the package.
 The software will write all its log file in the same directory.
 
+For example, the Linux command line would be:
+./SMURF_lin ../Configs/compiled_params_script.m
+
+And for Windows:
+SMURF_win.exe ../Configs/compiled_params_script.m  
 
 
 Database parameters
