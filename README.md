@@ -41,10 +41,12 @@ To allow using SMURF when Matlab is not available, we prepared a Windows and a L
 The user should first download and install one of the following file:
 
 **Windows** - download and install MCR from: https://www.mathworks.com/supportfiles/downloads/R2015a/deployment_files/R2015a/installers/win64/MCR_R2015a_win64_installer.exe
+
 **Linux** - download and install MCR from: https://www.mathworks.com/supportfiles/downloads/R2014a/deployment_files/R2014a/installers/glnxa64/MCR_R2014a_glnxa64_installer.zip
 
 The SMURF standalone version has a single input argument: the name of the configuration file, to be provided in the command line. 
 In Windows the user will be prompted to select the config file in case it was not provided in the command line. 
+
 An example of a configuration file (compiled_config_script.m) is provided with the package.
 The software will write all its log file in the same directory.
 
