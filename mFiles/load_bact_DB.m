@@ -1,6 +1,6 @@
 function [bactData] = load_bact_DB(dbPath,dbFileName,with_primer_flag,primers_len,read_len,const_len_flag,use_regions,prob_amp)
 
-regions_files = dir([dbPath '/' dbFileName '*.mat']);
+regions_files = dir([dbPath '/' dbFileName '*.mat'])
 if ~exist('use_regions','var') || isempty(use_regions)
     use_regions = 1:length(regions_files);
 end
@@ -26,7 +26,7 @@ if ~exist('read_len','var') || isempty(read_len)
     read_len = str2num(kL);
 end
 
-
+[dbPath '/' regions_files(1).name]
 load([dbPath '/' regions_files(1).name],'Dictionary','Header_amp');
 nB = length(Header_amp);
 bactData.Header_Dictionary = Dictionary;

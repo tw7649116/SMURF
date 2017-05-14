@@ -31,7 +31,7 @@ Results include:
  
 Usage
 -------
-1. Generate the ad-hoc database of k-mers by running the DB_prepare.m script. The parameters that define the DB are specified in db_params_script.m file
+1. Generate the ad-hoc database of k-mers by running the "adhoc_DB_prepare.m script". The parameters that define the DB are specified in "adhoc_db_params_script.m" file
 2. To profile a single sample use a script named "profile_one_sample.m". Parameters of the sample are specified in the script. The sample preparation and the algorithm parameters are specified in the script called params_script.m 
 3. Alternatively you can run the main_smurf.m function with one config file "compiled_config_script.m" as described for the standalone versions.
 
@@ -118,4 +118,10 @@ Algorithm parameters
 **tol** – maximal L1 change in the estimate of read proportions vector between algorithm iterations.
 
 **numIter** – maximal number of iteration of the reconstruction algorithm.
+
+Replacing Greengenes by your favorite database
+--------------------
+The current database used by SMURF is Greengenes 201305. To use another database (e.g. SILVA) please run the script “DB_prepare.m”, whose parameters are specified in "db_params_script.m" file.
+
+
 
