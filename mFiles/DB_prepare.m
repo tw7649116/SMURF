@@ -13,6 +13,9 @@ L = ceil(2*max_s16_len/pack_word_size);
 for ii = 1:ceil(N/B)
     disp(['Block '  num2str(ii) '/' num2str(ceil(N/B))])
     [Heads, Seqs] = fastaread([db_dir db_filename],'blockread', [B*(ii-1)+1 B*ii]);
+    seq_len = cellfun(@length,Seqs);
+    Heads(seq_len>max_s16_len | seq_len<min_s16_len) = [];
+    Seqs(seq_len>max_s16_len | seq_len<min_s16_len) = [];
     disp('Done loading. Working...')
     
     F = 2^maxNonACGT;
